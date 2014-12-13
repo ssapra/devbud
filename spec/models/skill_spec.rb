@@ -14,7 +14,7 @@ RSpec.describe Skill, :type => :model do
       expect(skill).not_to be_valid
     end
 
-    it 'has a duplicated name name' do
+    it 'has a duplicated name' do
       skill1 = create :skill
       skill2 = build :skill, name: skill1.name
       expect(skill2).not_to be_valid

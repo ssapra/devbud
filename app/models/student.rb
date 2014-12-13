@@ -6,6 +6,8 @@ class Student < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 8 }, allow_nil: true
 
+  belongs_to :school
+
   def name
     [first_name, last_name].join ' '
   end
