@@ -5,6 +5,6 @@
 git clone git@github.com:ssapra/devbud.git
 cd devbud
 bundle install
-psql -c "CREATE ROLE devbud WITH SUPERUSER LOGIN"
+rake db:reset_role db:create db:migrate db:seed
 rails server
 ```
