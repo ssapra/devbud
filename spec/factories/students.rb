@@ -1,12 +1,11 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :student do
-    email_address "MyString"
-    name "MyString"
+    email "MyString"
+    first_name "MyString"
+    last_name "YourString"
     year 1
     summary "MyText"
-    password_hash "MyString"
+    password_digest "MyString"
     github_url "MyString"
     linkedin_url "MyString"
     image_url "MyString"

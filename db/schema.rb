@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213013508) do
+ActiveRecord::Schema.define(version: 20141213050607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "students", force: true do |t|
-    t.string   "email_address"
+    t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "year"
     t.text     "summary"
-    t.string   "password_hash"
+    t.string   "password_digest"
     t.string   "resume_url"
     t.string   "website_url"
     t.string   "github_url"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141213013508) do
     t.string   "dribble_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "verified_email",    default: false
   end
 
 end
