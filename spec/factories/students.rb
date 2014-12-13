@@ -5,7 +5,8 @@ FactoryGirl.define do
     last_name "YourString"
     year 1
     summary "MyText"
-    password_digest "MyString"
+    password "password"
+    password_confirmation "password"
     github_url "MyString"
     linkedin_url "MyString"
     image_url "MyString"
