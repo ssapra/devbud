@@ -1,5 +1,8 @@
 #DevBud
 
+[![Build Status](https://travis-ci.org/ssapra/devbud.svg)](https://travis-ci.org/ssapra/devbud)
+
+
 ##Installation##
 ```
 git clone git@github.com:ssapra/devbud.git
