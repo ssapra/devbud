@@ -1,0 +1,16 @@
+language: ruby
+bundler_args: --without development --deployment
+rvm:
+  - 2.0.0-p247
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create role devbud with superuser login'
+  - psql -c 'create database devbud_test' -U devbud
+script:
+  - RAILS_ENV=test bundle exec rake db:reset --trace
+  - bundle exec rspec
+gemfile:
+  - Gemfile
+branches:
+  only:
+    - master

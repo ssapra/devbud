@@ -1,0 +1,8 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: devbud_test
+  pool: 5
+  username: devbud
+  host: localhost
+  port: 5432
