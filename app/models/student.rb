@@ -9,6 +9,7 @@ class Student < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   belongs_to :school
+  has_many :projects
 
   def name
     [first_name, last_name].join ' '

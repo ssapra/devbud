@@ -18,4 +18,6 @@ Rails.application.routes.draw do
       get :activate
     end
   end
+
+  get '/auth/github/callback' => 'students#callback'
 end

@@ -1,0 +1,6 @@
+- unless @student.github_url.nil?
+  =link_to "GitHub Sync", "https://github.com/login/oauth/authorize?scope=user&client_id=#{ENV['GITHUB_CLIENT_ID']}"
+
+%ul
+  -@student.projects.each do |project|
+    %li=project.name

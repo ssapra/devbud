@@ -27,6 +27,29 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def callback
+    session_code = request.env['rack.request.query_hash']['code']
+    result = RestClient.post('https://github.com/login/oauth/access_token', {client_id: ENV["GITHUB_CLIENT_ID"],
+                                                                             client_secret: ENV['GITHUB_CLIENT_SECRET'],
+                                                                             code: session_code},
+                                                                             accept: :json)
+    access_token = JSON.parse(result)['access_token']
+    results = JSON.parse(RestClient.get('https://api.github.com/user', {params: {access_token: access_token}}))
+    current_user.update_attributes(github_url: 'github.com/' + results['login'])
+    results["repos"] = getrequest(results['repos_url'])
+    results["repos"].each do |repo|
+      project = Project.create(name: repo['name'],
+                               github_id: repo['id'],
+                               code: repo['html_url'],
+                               description: repo['description'],
+                               started_at: repo['created_at'],
+                               last_updated_at: repo['updated_at'],
+                               student_id: current_user.id)
+      # repo['language']
+    end
+    redirect_to student_path(current_user)
+  end
+
   private
 
   def student_params
