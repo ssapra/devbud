@@ -24,7 +24,8 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
+    @student = current_user
+    @projects = @student.projects.order(:started_at).reverse
   end
 
   def callback
@@ -45,8 +46,11 @@ class StudentsController < ApplicationController
                                started_at: repo['created_at'],
                                last_updated_at: repo['updated_at'],
                                student_id: current_user.id)
-      # repo['language']
+      skill = Skill.find_by_name(repo['language'])
+      ProjectSkill.create(project_id: project.id, skill_id: skill.id)
     end
+    new_skills = current_user.projects.map(&:skills).flatten.uniq - current_user.skills
+    new_skills.each {|skill| StudentSkill.create(skill_id: skill.id, student_id: current_user.id) }
     redirect_to student_path(current_user)
   end
 

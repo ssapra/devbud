@@ -1,3 +1,6 @@
+Project.destroy_all
+ProjectSkill.destroy_all
+StudentSkill.destroy_all
 Skill.destroy_all
 School.destroy_all
 Student.destroy_all

@@ -10,10 +10,9 @@
 
     <div id="nav">
       <% if current_user %>
-      <%= link_to "Edit Profile", edit_student_path(current_user.id) %>
-      <%= link_to "Logout", :logout, method: :post %>
+        <%= link_to "Logout", :logout, method: :post %>
       <% else %>
-      <%= link_to "Login", :login %>
+        <%= link_to "Login", :login %>
       <% end %>
     </div>
     <div>

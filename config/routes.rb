@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
 
+  get '/profile' => 'students#show'
+
   get 'password_resets/update'
 
   root to: 'home#index'
@@ -13,11 +15,8 @@ Rails.application.routes.draw do
   resources :password_resets
   get 'login' => 'sessions#new', :as => :login
   post 'logout' => 'sessions#destroy', :as => :logout
-  resources :students do
-    member do
-      get :activate
-    end
-  end
+
+  get '/student/:id/activate' => 'students#activate', as: :activate_student
 
   get '/auth/github/callback' => 'students#callback'
 end

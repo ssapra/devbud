@@ -1,6 +1,16 @@
-- unless @student.github_url.nil?
+- unless @student.github_url
   =link_to "GitHub Sync", "https://github.com/login/oauth/authorize?scope=user&client_id=#{ENV['GITHUB_CLIENT_ID']}"
 
-%ul
-  -@student.projects.each do |project|
-    %li=project.name
+%h2 Name
+=@student.name
+%h2 Skills
+=@student.skills.map(&:name).join(", ")
+
+%h2 Projects
+-@projects.each do |project|
+  %h3=project.name
+  - unless project.description.empty?
+    %h3=project.description
+  %h3=project.started_at
+  %h3="Skills: " + project.skills.map(&:name).join(", ")
+  %hr
