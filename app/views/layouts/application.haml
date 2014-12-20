@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title Devbud
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .menu-area
+      #dl-menu.dl-menuwrapper
+        %button.dl-trigger Open Menu
+        %ul.dl-menu
+          %li
+            %a{:href => "#intro"} Home
+          %li
+            %a{:href => "#about"} About
+          %li
+            - if current_user
+              = link_to "Logout", :logout, method: :post
+            - else
+              = link_to "Login", :login
+          %li
+            %a{:href => "#services"} Services
+          %li
+            %a{:href => "#works"} Works
+          %li
+            %a{:href => "#contact"} Contact
+          %li
+            %a{:href => "#"} Sub Menu
+            %ul.dl-submenu
+              %li
+                %a{:href => "#"} Sub menu
+              %li
+                %a{:href => "#"} Sub menu
+      / /dl-menuwrapper
+    / intro area
+
+    - if notice
+      %p.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-danger= alert
+    = yield
+    
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

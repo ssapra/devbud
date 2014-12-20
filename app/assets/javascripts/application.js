@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require modernizr
+//= require bootstrap
+//= require smooth_scroll
+//= require dlmenu
+//= require wow
+//= require custom
