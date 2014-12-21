@@ -25,5 +25,11 @@ module Devbud
     Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
       config.assets.paths << path
     end
+
+    config.assets.precompile += [Rails.root.join('app', 'assets', 'images', 'bg-mac.png'),
+                                 Rails.root.join('app', 'assets', 'images', 'spacer', '*.jpg'),
+                                 Rails.root.join('app', 'assets', 'images', 'team', '*.jpg'),
+                                 Rails.root.join('app', 'assets', 'images', 'works', '*.jpg'),
+                                 Rails.root.join('app', 'assets', 'images', 'works', 'thumbs', '*.jpg')]
   end
 end
