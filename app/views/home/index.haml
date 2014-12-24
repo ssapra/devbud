@@ -178,7 +178,7 @@
 
     .row
       .col-md-offset-1.col-md-10
-        =form_for @student, html: {class: "form-horizontal"} do |f|
+        =form_for @user, html: {class: "form-horizontal"} do |f|
           .form-group
             .col-md-offset-2.col-md-8
               =f.text_field :first_name, placeholder: "First Name", class: "form-control"
@@ -194,6 +194,16 @@
           .form-group
             .col-md-offset-2.col-md-8
               =f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control"
+
+          .form-group
+            .col-md-offset-2.col-md-8
+              = f.label :type
+              %br
+              = f.label :type, "Student", :value => "Student"
+              = f.radio_button :type, "Student"
+              = f.label :type, "Client", :value => "Client"
+              = f.radio_button :type, "Client"
+                
           .form-group
             .col-md-offset-2.col-md-8
               =f.submit "Submit", class: "btn btn-theme btn-lg btn-block"

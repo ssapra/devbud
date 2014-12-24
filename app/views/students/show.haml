@@ -14,7 +14,7 @@
                 -skill.rating.times do
                   %i.fa.fa-star
 
-          / Examples 
+          / Examples
           .col-md-6
             HTML & CSS
           .col-md-6
@@ -67,7 +67,7 @@
 
       / Example
       %p I am a second year student at the University of Chicago, studying Near Eastern Languages. As such, this qualifies me to charge a lot of money to code things for you. I hope you have a merry christmas.
-      
+
       %br/
       %h4 Previous Projects
       -@projects.each do |project|
@@ -83,26 +83,23 @@
               =project.description
               %em.skills
                 =project.skills.map(&:name).join(", ")
-      
+
       / Examples
       .skill
         %h6 Saferide Mobile
-        %p 
-          Basically free Uber for drunk college students. Did not progress beyond colored poster phase. 
+        %p
+          Basically free Uber for drunk college students. Did not progress beyond colored poster phase.
           %em.skills
             Coloring, Charisma
 
       .skill
-        %h6 
+        %h6
           %a{:href => "http://linguamocha.com"}
             Linguamocha
-        %p 
+        %p
           Great idea that was typically misinterpreted to be something dirty. Really just wanted a platform to find people to have coffee with, since I was lonely.
           %em.skills
             Ruby on Rails, HTML & CSS, Bullshit
 
       - unless @student.github_url
         =link_to "GitHub Sync", "https://github.com/login/oauth/authorize?scope=user&client_id=#{ENV['GITHUB_CLIENT_ID']}"
-
-
-

@@ -2,12 +2,16 @@ class SessionsController < ApplicationController
   skip_before_filter :require_login, except: [:destroy]
 
   def new
-    @student = Student.new
+    @user = User.new
   end
 
   def create
-    if @student = login(params[:email], params[:password], params[:remember])
-      redirect_back_or_to(student_path(@student), notice: 'Login successful')
+    if @user = login(params[:email], params[:password], params[:remember])
+      if @user.type == "Student"
+        redirect_back_or_to(student_path(@user), notice: 'Login successful')
+      else
+        redirect_back_or_to(client_path(@user), notice: 'Login successful')
+      end
     else
       flash.now[:alert] = 'Login failed'
       render action: 'new'

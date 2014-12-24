@@ -213,7 +213,7 @@ Rails.application.config.sorcery.configure do |config|
     # make this configuration inheritable for subclasses. Useful for ActiveRecord's STI.
     # Default: `false`
     #
-    # user.subclasses_inherit_config =
+    user.subclasses_inherit_config = true
 
 
     # -- remember_me --
@@ -256,7 +256,7 @@ Rails.application.config.sorcery.configure do |config|
     # your mailer class. Required.
     # Default: `nil`
     #
-    user.user_activation_mailer = StudentMailer
+    user.user_activation_mailer = UserMailer
 
 
 
@@ -308,7 +308,7 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    user.reset_password_mailer = StudentMailer
+    user.reset_password_mailer = UserMailer
 
 
     # reset password email method on your mailer class.
@@ -434,5 +434,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "Student"
+  config.user_class = "User"
 end
