@@ -1,16 +1,108 @@
-- unless @student.github_url
-  =link_to "GitHub Sync", "https://github.com/login/oauth/authorize?scope=user&client_id=#{ENV['GITHUB_CLIENT_ID']}"
+.container.profile
+  .row
+    .col-md-4.text-left
+      .profile-pic
+      %h1
+        =@student.name
+      .skill-box
+        .col-md-12
+          -@student.skills.each do |skill|
+            .col-md-6
+              =skill.name
+            -if skill.rating
+              .col-md-6
+                -skill.rating.times do
+                  %i.fa.fa-star
 
-%h2 Name
-=@student.name
-%h2 Skills
-=@student.skills.map(&:name).join(", ")
+          / Examples 
+          .col-md-6
+            HTML & CSS
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+        .col-md-12
+          .col-md-6
+            Bullshit
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+        .col-md-12
+          .col-md-6
+            Charisma
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+        .col-md-12
+          .col-md-6
+            Ruby on Rails
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+        .col-md-12
+          .col-md-6
+            Javascript
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+        .col-md-12
+          .col-md-6
+            Coloring
+          .col-md-6
+            %i.fa.fa-star
+            %i.fa.fa-star
 
-%h2 Projects
--@projects.each do |project|
-  %h3=project.name
-  - unless project.description.empty?
-    %h3=project.description
-  %h3=project.started_at
-  %h3="Skills: " + project.skills.map(&:name).join(", ")
-  %hr
+    .col-md-6.text-left.profile-about
+      %p=@student.summary
+
+      / Example
+      %p I am a second year student at the University of Chicago, studying Near Eastern Languages. As such, this qualifies me to charge a lot of money to code things for you. I hope you have a merry christmas.
+      
+      %br/
+      %h4 Previous Projects
+      -@projects.each do |project|
+        .skill
+          %h6
+            -if project.url
+              %a{:href => "#{project.url}"}
+                =project.name
+            -else
+              =project.name
+          - unless project.description.empty?
+            %p
+              =project.description
+              %em.skills
+                =project.skills.map(&:name).join(", ")
+      
+      / Examples
+      .skill
+        %h6 Saferide Mobile
+        %p 
+          Basically free Uber for drunk college students. Did not progress beyond colored poster phase. 
+          %em.skills
+            Coloring, Charisma
+
+      .skill
+        %h6 
+          %a{:href => "http://linguamocha.com"}
+            Linguamocha
+        %p 
+          Great idea that was typically misinterpreted to be something dirty. Really just wanted a platform to find people to have coffee with, since I was lonely.
+          %em.skills
+            Ruby on Rails, HTML & CSS, Bullshit
+
+      - unless @student.github_url
+        =link_to "GitHub Sync", "https://github.com/login/oauth/authorize?scope=user&client_id=#{ENV['GITHUB_CLIENT_ID']}"
+
+
+

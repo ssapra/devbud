@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
 
-  get '/profile' => 'students#show'
+  get '/profile/:id' => 'students#show', as: :student
 
   get 'password_resets/update'
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   post 'logout' => 'sessions#destroy', :as => :logout
 
-  get '/student/:id/activate' => 'students#activate', as: :activate_student
+  get '/students/:id/activate' => 'students#activate', as: :activate_student
 
   get '/auth/github/callback' => 'students#callback'
 end
